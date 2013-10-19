@@ -2,24 +2,27 @@
 var gameModule = (function (){
 	var timeoutVar,
 		counter = 0;
+	var canvas = document.getElementById('game'),
+			ctx = canvas.getContext('2d');
+			canvas.width = 480;
+			canvas.height = 320;
 	function start(){
-		var canvas = document.getElementById('game'),
-			ctx = canvas.getContext('2d'),
-			ballX = Math.floor(Math.random()*300),
+		var	ballX = Math.floor(Math.random()*300),
 			ballY = Math.floor(Math.random()*500),
-			ballR = Math.floor(Math.random()*100);
+			ballR = Math.floor(Math.random()*100),
+			a = Math.floor(Math.random()*255),
+			b = Math.floor(Math.random()*255),
+			c = Math.floor(Math.random()*255);
 		
-		canvas.width = 480;
-		canvas.height = 320;
-		ctx.fillStyle ='DeepSkyBlue ';
+		ctx.fillStyle ="rgb("+a+","+b+","+c+")";
 		ctx.beginPath();
 		ctx.arc(ballX,ballY,ballR,0,Math.PI*2,true);
 		ctx.fill();
 		ctx.font="40px Arial";
 		ctx.fillStyle = 'Tomato ';
-  		ctx.fillText("Hello ",10,50);
+  		ctx.fillText("Hello ",250,300);
 
-		if(counter>=10)
+		if(counter>=25)
 		{
 			console.log("END");
 		}
