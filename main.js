@@ -15,19 +15,31 @@ var gameModule = (function (){
 		ctx.beginPath();
 		ctx.arc(ballX,ballY,ballR,0,Math.PI*2,true);
 		ctx.fill();
+		ctx.font="40px Arial";
+		ctx.fillStyle = 'Tomato ';
+  		ctx.fillText("Hello ",10,50);
 
 		if(counter>=10)
-		{}
+		{
+			console.log("END");
+		}
 		else
 		{
 			timeoutVar = setTimeout(start,1000);
 			counter++;
-			console.log("Counter = "+counter);
+			//console.log("Counter = "+counter);
+			print();
 		}
+	}
+	
+	function print(){
+		console.log("Counter = "+counter);
 	}
 	return {
 		start:start
+	//	print:print
 	}
 })();
 
 gameModule.start();
+//gameModule.print();
