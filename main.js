@@ -20,7 +20,7 @@ var gameModule = (function (){
 		ctx.fill();
 		ctx.font="40px Arial";
 		ctx.fillStyle = 'Tomato ';
-  		ctx.fillText("Hello ",250,300);
+  		ctx.fillText("炘 ",420,300);
 
 		if(counter>=25)
 		{
@@ -28,7 +28,7 @@ var gameModule = (function (){
 		}
 		else
 		{
-			timeoutVar = setTimeout(start,1000);
+			timeoutVar = setTimeout(start,500);
 			counter++;
 			//console.log("Counter = "+counter);
 			print();
