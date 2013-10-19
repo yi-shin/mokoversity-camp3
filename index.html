@@ -59,14 +59,16 @@
 	</div>
 </div>
 <script>
-var canvas = document.getElementById('game');
-var ctx = canvas.getContext('2d');
-canvas.width = 480;
-canvas.height = 320;
-ctx.fillStyle ='pink';
-ctx.beginPath();
-ctx.arc(100,150,80,0,Math.PI*2,true);
-ctx.fill();
+(function (){
+	var canvas = document.getElementById('game');
+	var ctx = canvas.getContext('2d');
+	canvas.width = 480;
+	canvas.height = 320;
+	ctx.fillStyle ='pink';
+	ctx.beginPath();
+	ctx.arc(100,150,80,0,Math.PI*2,true);
+	ctx.fill();
+})();
 </script>
 </body>
 </html>
