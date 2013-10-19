@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>hello</title>
+	<title></title>
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="bootstrap.css">
@@ -52,12 +52,21 @@
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
-<div id="main"></div>
-<div id="scores"></div>
 
 <div class="row">
-	<div class="col-md-4">hello</div>
-	<div class="col-md-8">world</div>
+	<div class="col-md-12">
+		<div.id="main"><canvas id = "game"></canvas></div>	
+	</div>
 </div>
+<script>
+var canvas = document.getElementById('game');
+var ctx = canvas.getContext('2d');
+canvas.width = 480;
+canvas.height = 320;
+ctx.fillStyle ='pink';
+ctx.beginPath();
+ctx.arc(100,150,80,0,Math.PI*2,true);
+ctx.fill();
+</script>
 </body>
 </html>
