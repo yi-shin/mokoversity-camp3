@@ -1,12 +1,11 @@
 /*jslint browser: true, devel: true, closure: true */
 var gameModule = (function (document) {
     "use strict";
-    var counter = 1,
+    var counter = 0,
         ballX,
         ballY,
         ballR,
-        scores,
-        sum;
+        scores;
 
     function touchEvent(evt) {
         var x = evt.clientX,
@@ -15,11 +14,9 @@ var gameModule = (function (document) {
         console.log("Clienked: " + x + "," + y);
         if (tmp < ballR * ballR) {
             scores = scores + 100 - ballR;
-           // sum = sum + scores;
             console.log("Hit!Your scores:" + scores);
         } else {
-            scores = scores + 20 - ballR;
-           // sum = sum +scores;
+            scores = scores + 30 - ballR;
             console.log("You don't hit.Your scores:" + scores);
         }
         //ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -27,8 +24,10 @@ var gameModule = (function (document) {
     }
 
     function print() {
-        console.log("Counter = " + counter);
         console.log("Final: " + scores);
+        //API:http://127.0.0.1:3000/scores?s=500
+        var api = "http://127.0.0.1:3000/scores?s=" + scores;
+        $.ajax({url : api});
     }
 
     function startGame() {
@@ -57,14 +56,13 @@ var gameModule = (function (document) {
             print();
         } else {
             setTimeout(startGame, s);
-            console.log("Counter = " + counter);
             counter = counter + 1;
+            console.log("Counter = " + counter);
         }
     }
 
     function start() {
         scores = 0;
-        sum = 0;
         document.getElementById('main').addEventListener("click", touchEvent, false);
         startGame();
     }
