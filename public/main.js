@@ -1,7 +1,7 @@
 /*jslint browser: true, devel: true, closure: true */
 var gameModule = (function (document) {
     "use strict";
-    var counter = 0,
+    var counter = 1,
         ballX,
         ballY,
         ballR,
@@ -14,16 +14,20 @@ var gameModule = (function (document) {
             tmp = (ballX - x) * (ballX - x) + (ballY - y) * (ballY - y);
         console.log("Clienked: " + x + "," + y);
         if (tmp < ballR * ballR) {
-            scores = 100 - ballR;
-            sum = sum + scores;
+            scores = scores + 100 - ballR;
+           // sum = sum + scores;
             console.log("Hit!Your scores:" + scores);
+        } else {
+            scores = scores + 20 - ballR;
+           // sum = sum +scores;
+            console.log("You don't hit.Your scores:" + scores);
         }
         //ctx.clearRect(0,0,canvas.width,canvas.height);
         //ctx.restore();
     }
 
     function print() {
-        console.log("Final: " + sum);
+        console.log("Final: " + scores);
     }
 
     function startGame() {
@@ -31,7 +35,8 @@ var gameModule = (function (document) {
             ctx = canvas.getContext('2d'),
             a = Math.floor(Math.random() * 255),
             b = Math.floor(Math.random() * 255),
-            c = Math.floor(Math.random() * 255);
+            c = Math.floor(Math.random() * 255),
+            s = 700+Math.floor(Math.random() * 500);
 
         ballX = Math.floor(Math.random() * 600);
         ballY = Math.floor(Math.random() * 450);
@@ -47,12 +52,12 @@ var gameModule = (function (document) {
         ctx.fillStyle = 'Tomato ';
         ctx.fillText("炘 ", 600, 470);
 
-        if (counter >= 10) {
+        if (counter > 10) {
             print();
         } else {
-            setTimeout(startGame, 1000);
-            counter = counter + 1;
+            setTimeout(startGame, s);
             console.log("Counter = " + counter);
+            counter = counter + 1;
         }
     }
 
