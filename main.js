@@ -2,7 +2,7 @@
 var gameModule = (function (){
 	var timeoutVar,
 		counter = 0,
-		ballX,ballY,ballR;
+		ballX,ballY,ballR,score,sum;
 	/*var canvas = document.getElementById('game'),
 			ctx = canvas.getContext('2d');
 			canvas.width = 480;
@@ -14,10 +14,13 @@ var gameModule = (function (){
 		var tmp = (ballX-x)*(ballX-x)+(ballY-y)*(ballY-y);
 		if(tmp < ballR*ballR)
 		{
-			console.log("Hit,Good.");
+			scores = 100-ballR;
+			sum += scores;
+			console.log("Hit !Your scores: "+ scores);
 		}
 	}
 	function start(){
+		scores = 0,sum = 0;
 		document.getElementById('main').addEventListener("click",touchEvent,false);
 		startGame();
 	}
@@ -54,7 +57,7 @@ var gameModule = (function (){
 	}
 	
 	function print(){
-		console.log("Counter = "+counter);
+		console.log("Final: "+ sum);
 	}
 	return {
 		start:start
