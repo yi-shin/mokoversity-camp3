@@ -1,27 +1,13 @@
 /*jslint browser: true, devel: true, closure: true */
-var gameModule = (function (document) {
-    "use strict";
+var gameModule = (function (document, $) {
+   // "use strict";
     var counter = 0,
         ballX,
         ballY,
         ballR,
         scores;
 
-    function touchEvent(evt) {
-        var x = evt.clientX,
-            y = evt.clientY,
-            tmp = (ballX - x) * (ballX - x) + (ballY - y) * (ballY - y);
-        console.log("Clienked: " + x + "," + y);
-        if (tmp < ballR * ballR) {
-            scores = scores + 100 - ballR;
-            console.log("Hit!Your scores:" + scores);
-        } else {
-            scores = scores + 30 - ballR;
-            console.log("You don't hit.Your scores:" + scores);
-        }
-        //ctx.clearRect(0,0,canvas.width,canvas.height);
-        //ctx.restore();
-    }
+   
 
     function print() {
         console.log("Final: " + scores);
@@ -29,9 +15,36 @@ var gameModule = (function (document) {
         var api = "http://127.0.0.1:3000/scores?s=" + scores;
         $.ajax({url : api});
     }
+     function start() {
+        scores = 0;
+        document.getElementById('main').addEventListener("click", touchEvent, false);
+        startGame();
+    }
+         function touchEvent(evt) {
+        var x = evt.clientX,
+            y = evt.clientY,
+            tmp = (ballX - x) * (ballX - x) + (ballY - y) * (ballY - y);
+        var canvas = document.getElementById('game');
+            ctx = canvas.getContext('2d'),
+        console.log("Clienked: " + x + "," + y);
+        if (tmp < ballR * ballR) {
+            scores = scores + 100 - ballR;
+            console.log("Hit!Your scores:" + scores);
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.restore();
+        } else {
+            scores = scores + 30 - ballR;
+            console.log("You don't hit.Your scores:" + scores);
+        }
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.restore; 
+
+    }
+
+   
 
     function startGame() {
-        var canvas = document.getElementById('game'),
+        var canvas = document.getElementById('game');
             ctx = canvas.getContext('2d'),
             a = Math.floor(Math.random() * 255),
             b = Math.floor(Math.random() * 255),
@@ -53,6 +66,11 @@ var gameModule = (function (document) {
         ctx.fillText("炘 ", 600, 470);
 
         if (counter >= 10) {
+        var canvas = document.getElementById('game'),
+            ctx = canvas.getContext('2d');
+        canvas.width = 640;
+        canvas.height = 480;
+        document.getElementById('main').removeEventListener("click", touchEvent, false);
             print();
         } else {
             setTimeout(startGame, s);
@@ -61,16 +79,11 @@ var gameModule = (function (document) {
         }
     }
 
-    function start() {
-        scores = 0;
-        document.getElementById('main').addEventListener("click", touchEvent, false);
-        startGame();
-    }
     return {
         start : start
     //  print:print
     };
-}(document));
+}(document, $));
 
 gameModule.start();
 //gameModule.print();
