@@ -27,6 +27,7 @@ var gameModule = (function (document) {
     }
 
     function print() {
+        console.log("Counter = " + counter);
         console.log("Final: " + scores);
     }
 
@@ -52,7 +53,7 @@ var gameModule = (function (document) {
         ctx.fillStyle = 'Tomato ';
         ctx.fillText("炘 ", 600, 470);
 
-        if (counter > 10) {
+        if (counter >= 10) {
             print();
         } else {
             setTimeout(startGame, s);
